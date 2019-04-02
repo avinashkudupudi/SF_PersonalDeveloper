@@ -1,0 +1,51 @@
+.srvc-slds-truncate.ng-binding {
+    white-space: pre-wrap;
+     font-size: 0.75rem;
+}
+
+.table-style {
+    max-height: 57rem !important;
+    width: 70%;
+    overflow: scroll;
+}
+
+.header-fixed {
+  position: fixed;
+  //padding: 5px;
+  //background-color: #C7CDCC;
+  //border: #343736;
+}
+
+
+.tooltip:hover span.tooltiptext{
+  display:block;
+}
+
+/*
+button {
+   position: relative;
+   vertical-align: top;
+   height: 60px;
+   font-size: 22px;
+   color: white;
+   text-align: center;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+   background: #3498db;
+   border: 0;
+   border-bottom: 2px solid #2a8bcc;
+   cursor: pointer;
+   -webkit-box-shadow: inset 0 -2px #2a8bcc;
+   box-shadow: inset 0 -2px #2a8bcc;
+}
+button:active {
+   top: 1px;
+   outline: none;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+}
+button:disabled {
+   outline: none;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+   opacity: 0.5;
+}*/
