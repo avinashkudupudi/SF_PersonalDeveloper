@@ -1,0 +1,4 @@
+.srvc-slds-truncate.ng-binding {
+    white-space: pre-wrap;
+     font-size: 1.25rem;
+}
