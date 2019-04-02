@@ -1,0 +1,30 @@
+<div class='slds-col--padded slds-size--1-of-1'>
+    <p><input type="text" ng-model="test"></p>
+    <div style="width: 100%;">
+        <div style="float: left;" class="slds-form-element { 'vlc-selectableitem-selected' : p.vlcSelected }" ng-repeat="p in control.vlcSI[control.itemsKey]">
+            <div class="slds-form-element__control" ng-if="p.vlcSelected == true">
+                <div class="slds-checkbox">
+                    <input type="checkbox" ng-model='p.vlcSelected' name="options" id="checkbox-{{p.value}}" value="checkbox-{{p.value}}" ng-change='onSelectItem(control, p, $index, this)'/>
+                    <label class="slds-checkbox__label" for="checkbox-{{p.value}}">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label">{{p.value}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div style="width: 100%;">
+        <div style="float: left;" class="slds-form-element { 'vlc-selectableitem-selected' : p.vlcSelected }" ng-repeat="p in control.vlcSI[control.itemsKey] | filter:{value: test}">
+            <div class="slds-form-element__control" ng-if="p.vlcSelected != true && p.value">
+                <div class="slds-checkbox">
+                    <input type="checkbox" ng-model='p.vlcSelected' name="options" id="checkbox-{{p.value}}" value="checkbox-{{p.value}}" ng-change='onSelectItem(control, p, $index, this)'/>
+                    <label class="slds-checkbox__label" for="checkbox-{{p.value}}">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label">{{p.value}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
