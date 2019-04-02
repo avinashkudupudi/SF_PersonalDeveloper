@@ -1,0 +1,149 @@
+<div class="slds-col--padded slds-size--1-of-1" ng-controller="insTireMembersCtrl">
+   <!--  <div class="vlc-slds-table-heading">
+       <label>{{::control.propSetMap.label}}</label> 
+    </div> -->
+<table class="slds-table slds-table--bordered slds-table--cell-buffer vlc-slds-table slds-table--fixed-layout">
+       <thead>
+            <tr class="slds-text-heading--label">
+                <!--#0 Base and Buy Up -->  
+                <th width="5%" scope="col">
+                    <div class="slds-truncate">#</div>
+                </th>
+                 
+                <th class="slds-is-resizable" width="11%" scope="col" area-label="Last Name"> <!--#2 Base and Buy Up --> 
+                    <div class="slds-truncate" title="Last Name">Last Name</div>
+                </th> 
+                
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] != 'Buy Up'" width="12%" scope="col"> <!--#3 Base-->  
+                    <div class="slds-truncate">IDI Eligible Earnings</div>
+                </th> 
+                  
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] == 'Buy Up'"  width="12%" scope="col"> <!--#3 Buy Up -- addded by RG 12/11/2018 for Buy Up Tier -->
+                    <div class="slds-truncate">Annual IDI Buy Up Income</div>
+                </th> 
+                
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] != 'Buy Up'"  width="11%" scope="col"> <!--#4 Base--> 
+                    <div class="slds-truncate">Monthly Income</div>
+                </th>
+
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] == 'Buy Up'"  width="12%" scope="col"> <!--#4 Buy Up -- addded by RG 12/11/2018 for Buy Up Tier -->  
+                    <div class="slds-truncate">IDI BuyUp Monthly Income</div>
+                </th> 
+
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] != 'Buy Up'"  width="11%" scope="col"> <!--#5 Base-->
+                    <div class="slds-truncate">LTD Benefit</div>
+                </th>
+                <th  ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] == 'Buy Up'" width="12%" scope="col">
+                    <div class="slds-truncate">Total Base Benefits</div> <!--#5 Buy Up -- addded by RG 12/11/2018 for Buy Up Tier -->
+                </th> 
+                
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] != 'Buy Up'"  width="11%" scope="col">
+                    <div class="slds-truncate">LTD Effective</div> <!--#6 Base-->
+                </th>
+                
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] == 'Buy Up'"  width="12%" scope="col"> 
+                <div class="slds-truncate">Base Effective %</div> <!--#6 Buy Up -- addded by RG 12/11/2018 for Buy Up Tier -->
+                </th> 
+
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] != 'Buy Up'"  width="11%" scope="col"> <!--#7 Base-->
+                    <div class="slds-truncate">GSI</div>
+                </th> 
+
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] == 'Buy Up'"  width="12%" scope="col"> 
+                    <div class="slds-truncate">Buy Up GSI</div> <!--#7 Buy Up -- addded by RG 12/11/2018 for Buy Up Tier -->
+                </th> 
+
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] != 'Buy Up'"  width="11%" scope="col"> <!--#8 Base-->
+                    <div class="slds-truncate">IDI Effective</div>
+                </th>
+
+                <th ng-if="control.vlcSI[control.itemsKey][0]['IDIPlanType'] == 'Buy Up'"  width="12%" scope="col"> 
+                    <div class="slds-truncate">Buy Up Effective %</div> <!--#8 Buy Up -- addded by RG 12/11/2018 for Buy Up Tier -->
+                </th> 
+
+                <th width="11%" scope="col"> <!--#9 Base and BuyUp-->
+                    <div class="slds-truncate">Total Effective</div>
+                </th>
+                <th width="11%" scope="col"> <!--#10 Base and BuyUp-->
+                    <div class="slds-truncate">OCC Class</div>
+                </th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="slds-hint-parent" ng-repeat="p in control.vlcSI[control.itemsKey] | orderBy:sorterFunc:true | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-class="{ 'vlc-selectableitem-selected' : p.vlcSelected }">
+                
+                <td>
+                    <div class="srvc-slds-truncate payment">{{ ($index + 1) + (currentPage - 0) * pageSize }}</div>
+                </td>
+                
+                <td>
+                    <div class="srvc-slds-truncate payment">{{p['LastName']}}</div> <!--#2 Base and Buy Up -->
+                </td>
+                
+                <td ng-if="p['IDIPlanType'] != 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['IDIEligibleEarnings'] |number : 0}}</div> <!--#3 Base -->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] == 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['IDIBuyUpIncome_BN4'] |number : 0}}</div> <!--#3 Buy Up -->
+                </td>
+                
+                <td ng-if="p['IDIPlanType'] != 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['MonthlyIncome'] |number : 0}}</div> <!--#4 Base -->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] == 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['IDIBuyUpMonthlyIncome_BO4'] |number : 0}}</div> <!--#4 Buy Up -->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] != 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['LTDCapped'] |number : 0}}</div> <!--#5 Base-->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] == 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['TotalBaseBenefits'] |number : 0}}</div> <!--#5 Buy Up-->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] != 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">{{p['LTDEffective']}}%</div> <!--#6 Base-->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] == 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">{{p['BaseEffectivePct']}}%</div> <!--#6 Buy Up-->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] != 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['GSICapped'] |number : 0}}</div> <!--#7 Base-->
+                </td>
+                
+                <td ng-if="p['IDIPlanType'] == 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">$ {{p['BuyUpGSIBenefit_BU4b'] |number : 0}}</div> <!--#7 Buy Up-->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] != 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">{{p['IDIEffective']}}%</div> <!--#8 Base-->
+                </td>
+
+                <td ng-if="p['IDIPlanType'] == 'Buy Up'" >
+                    <div class="srvc-slds-truncate payment">{{p['BuyUpEffectivePct']}}%</div> <!--#8 Base-->
+                </td>
+
+                <td>
+                    <div class="srvc-slds-truncate payment">{{p['TotalEffectivePct']}}%</div> <!--#9 Base and Buy Up -->
+                </td>
+
+                <td>
+                    <div class="srvc-slds-truncate payment">{{p['OCCClass']}}</div> <!--#10 Base and Buy Up -->
+                </td>
+            </tr>                              
+        </tbody>        
+    </table>
+
+        <div>
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+            {{currentPage+1}}
+            <button ng-disabled="currentPage >= control.vlcSI.recSet.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+            <!--<span style="float: right;" ><strong>Total Tier Members: {{control.vlcSI.recSet.length}}</strong></span>-->
+        </div>  
+
+</div>
