@@ -1,0 +1,41 @@
+vlocity.cardframework.registerModule.filter('startFromGrid', function() {
+    return function(input, start) {
+        if (!input || !input.length) { return; }
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+});
+
+vlocity.cardframework.registerModule.controller('insTireMembersCtrl', ['$scope', '$controller', function($scope, $controller) {
+
+    $scope.sorterFunc = function(p){
+    return parseInt(p.IDIEligibleEarnings);
+    };
+
+    $scope.check = function(p) {    
+    //console.log('Sergio p', p);
+    //console.log('Sergio  scope', $scope);
+    //console.log('Sergio  scope', $scope.$parent.$parent.$parent.control.vlcSI.recSet.length);
+    };    
+
+          
+    $scope.MyCtrl = function(){
+    
+        $scope.currentPage = 0;
+        $scope.pageSize = 10;
+        $scope.data = [];
+
+
+        $scope.numberOfPages=function(){
+            console.log('Sergio  scope', $scope);
+            //return Math.ceil($scope.$parent.$parent.$parent.control.vlcSI.recSet.length/$scope.pageSize);                
+        }
+        //for (var i=0; i<45; i++) {
+          //  $scope.data.push("Item "+i);
+        //}        
+    
+    }
+
+    $scope.MyCtrl();
+
+}]);
