@@ -1,0 +1,23 @@
+global class CAIS_WC_RenewalBatch implements Database.Batchable<sObject>, Database.Stateful, Schedulable,Database.AllowsCallouts{
+     
+    global void execute(SchedulableContext sc){
+        Database.executeBatch(new CAIS_WC_RenewalBatch(), 200);
+    }
+    global Database.QueryLocator start(Database.BatchableContext bc){
+        String soqlQuery = 'Select Id, Name,API_SAN_Id__c from Quote Limit 2000';
+        return Database.getQueryLocator(soqlQuery);
+    }
+     
+    global void execute(Database.BatchableContext bc, List<Quote> scope){
+        CAIS_RenewalBatch rb = new CAIS_RenewalBatch();
+        String str = 'callWCRenewal';
+		Map<String, Object> obj1 = new Map<String, Object>();
+		Map<String, Object> obj2 = new Map<String, Object>();
+		Map<String, Object> obj3 = new Map<String, Object>();
+		rb.invokeMethod(str, obj1, obj2, obj3);
+    }
+     
+    global void finish(Database.BatchableContext bc){
+         
+    }    
+}
